@@ -35,7 +35,7 @@
 	munch=$CF/munch
 	cplusfiltC=$CF/c++filt}
 
-	I=$CF/incl
+	I=$CF/incl-master/incl-linux32/
 	LIBRARY=$CF/libC.a
 	
 	TINYCC=$(which tcc)
