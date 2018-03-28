@@ -59,7 +59,7 @@ void* chunk(int i)	// get memory that is not to be freed
 #define NEW_SIZE unsigned 
 #endif
 
-void* operator new(NEW_SIZE sz)	// get memory that might be freed
+void* operator new(size_t sz)	// get memory that might be freed
 {
 
 #ifdef _AIX

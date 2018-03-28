@@ -330,7 +330,7 @@ int error(int t, loc* lc, const char* s, const ea& a0, const ea& a1, const ea& a
 				break;
 			}
 			case 'p':	// pointer
-			{	char* f = sizeof(char*)==sizeof(int)?" %d":" %ld";
+			{	const char* f = sizeof(char*)==sizeof(int)?" %d":" %ld";
 				fprintf(out_file,f,a->p);
 				break;
 			}

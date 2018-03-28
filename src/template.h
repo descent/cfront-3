@@ -499,3 +499,4 @@ extern int first_file;
 extern bit all_flag,alltc_flag,data_flag,ft_flag,none_flag;
 extern void set_flags();
 extern Pname righttname;
+Pname has_templ_instance(Pname fn, Pexpr arg, bit no_err);

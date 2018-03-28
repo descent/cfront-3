@@ -187,8 +187,8 @@ protected:
 				/* needed by with_assgn classes */
 private:		
 			ios(ios&) ; /* Declared but not defined */
-	void		operator=(ios&) ; /* Declared but not defined */
 public:   /* old stream package compatibility */
+	void		operator=(ios&) ; /* Declared but not defined */
 	int		skip(int i) ; 
 };
 
