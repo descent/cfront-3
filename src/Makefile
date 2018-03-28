@@ -29,7 +29,7 @@ szal.result: szal/szal.c
 	./szal/szal > szal.result
 
 y.tab.C yystype.h: gram.y $(COMDEP0)
-	yacc -d gram.y
+	byacc -d gram.y
 	mv y.tab.c y.tab.C
 	mv y.tab.h yystype.h
 	sed -i -e 's/^#ifdef __cplusplus/#if 0/' y.tab.C
