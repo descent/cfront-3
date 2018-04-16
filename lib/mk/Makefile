@@ -23,7 +23,7 @@ O_STREAM	=	in.o out.o stream.o fstream.o manip.o cstreams.o \
 flt.o strstream.o rawin.o intin.o stdiobuf.o streambuf.o \
 filebuf.o  oldformat.o sbuf.dbp.o swstdio.o ios_compat.o _stdio.o 	# exit.o 
 
-OFILES	=	$(O_GENERIC) $(O_NEW) $(O_STATIC) $(O_STREAM) 
+OFILES	=	$(O_GENERIC) $(O_NEW) $(O_STATIC) $(O_STREAM) myvec.o
 CC	=	CC
 CCFLAGS	=-O -I../../incl
 
@@ -129,3 +129,6 @@ swstdio.o:	../stream/swstdio.C $(DEPEND)
 
 ios_compat.o:	../stream/ios_compat.C $(DEPEND)
 	$(CC) $(CCFLAGS) -I../stream -c ../stream/ios_compat.C
+
+myvec.o: ../myvec/myvec.C $(DEPEND)
+	$(CC) $(CCFLAGS)  -c ../myvec/myvec.C
