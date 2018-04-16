@@ -22,8 +22,10 @@ O_STATIC	=	_ctor.o _dtor.o _main.o dtors.o pure.o
 O_STREAM	=	in.o out.o stream.o fstream.o manip.o cstreams.o \
 flt.o strstream.o rawin.o intin.o stdiobuf.o streambuf.o \
 filebuf.o  oldformat.o sbuf.dbp.o swstdio.o ios_compat.o _stdio.o 	# exit.o 
+O_STRING	=	Pool_std.o std_exc.o std_in.o std_put.o std_win.o std_wstr.o std_find.o std_misc.o std_str.o std_wput.o
 
-OFILES	=	$(O_GENERIC) $(O_NEW) $(O_STATIC) $(O_STREAM) myvec.o
+OFILES	=	$(O_GENERIC) $(O_NEW) $(O_STATIC) $(O_STREAM) myvec.o 
+#$(O_STRING) # cannot compile string, so don't include it.
 CC	=	CC
 CCFLAGS	=-O -I../../incl
 
@@ -132,3 +134,25 @@ ios_compat.o:	../stream/ios_compat.C $(DEPEND)
 
 myvec.o: ../myvec/myvec.C $(DEPEND)
 	$(CC) $(CCFLAGS)  -c ../myvec/myvec.C
+
+Pool_std.o: ../string/Pool_std.C $(DEPEND)
+	$(CC) $(CCFLAGS) -I../string -c $<
+std_exc.o: ../string/std_exc.C $(DEPEND)
+	$(CC) $(CCFLAGS) -I../string -c $<
+std_in.o: ../string/std_in.C $(DEPEND)
+	$(CC) $(CCFLAGS) -I../string -c $<
+std_put.o: ../string/std_put.C $(DEPEND)
+	$(CC) $(CCFLAGS) -I../string -c $<
+std_win.o: ../string/std_win.C $(DEPEND)
+	$(CC) $(CCFLAGS) -I../string -c $<
+std_wstr.o: ../string/std_wstr.C $(DEPEND)
+	$(CC) $(CCFLAGS) -I../string -c $<
+std_find.o: ../string/std_find.C $(DEPEND)
+	$(CC) $(CCFLAGS) -I../string -c $<
+std_misc.o: ../string/std_misc.C $(DEPEND)
+	$(CC) $(CCFLAGS) -I../string -c $<
+std_str.o: ../string/std_str.C $(DEPEND)
+	$(CC) $(CCFLAGS) -I../string -c $<
+std_wput.o: ../string/std_wput.C $(DEPEND)
+	$(CC) $(CCFLAGS) -I../string -c $<
+
