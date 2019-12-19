@@ -16,7 +16,7 @@
 # any actual or intended publication of such source code.
 #
 ###############################################################################
-
+set -x
 # -----------------------------------------
 
 	CF=$(dirname $0)
@@ -41,7 +41,7 @@
 	TINYCC=$(which tcc)
 	if test -z "$TINYCC"
 	then
-	  ccC="gcc -w"
+	  ccC="arm-none-eabi-gcc -w -mcpu=cortex-m3 -mthumb -ffreestanding  -nostdlib -nodefaultlibs -mfloat-abi=soft"
 	  cppC="gcc -Du3b -U__GNUC__ -D__cfront__ -D__cplusplus=1 -D__signed__= -D__null=0 -E"
 	else
 	  ccC="tcc -w"
@@ -595,7 +595,7 @@ for A do
 				Z="$Z $TEMPDIR/$B.o"	# add object entry to the load list
 				APASS=1			# setting APASS to 1 causes link step to execute
 			else
-				echo "CC $O $A:" 1>&2
+				echo "aa bb CC $O $A:" 1>&2
 				#echo "$cppC $Y $deflist $CPLUS $cPLUS $SYS $IDIRS $A" 1>&2
 				eval '$cppC' '$Y' $deflist '$CPLUS' '$cPLUS' '$SYS' '$IDIRS' '$A' \>$TEMPDIR/cpptmp
 				E=$?
@@ -1061,6 +1061,7 @@ case $APASS in
 			then
 				$ccC $EL $P $LLIBPATH $Z $LIBRARY >$TEMPDIR/__err 2>&1
 				EE=$?
+                                echo cplusfiltC: $cplusfiltC
 				(test $DEMANGLE = 1 &&
 				 $cplusfiltC -w <$TEMPDIR/__err 2>/dev/null |
 				 sed "s/^[ 	]*\(..*\)::__vtbl.*$/   Virtual table for class '\1': first non-inline virtual function in '\1' is not defined./") ||
