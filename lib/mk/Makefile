@@ -40,7 +40,7 @@ libC.a:	$(OFILES)
 	ar r libC.a $(OFILES)
 
 _stdio.o: _stdio.c
-	cc -c _stdio.c
+	$(CC) -c _stdio.c
 
 generic.o:	../generic/generic.C $(DEPEND)
 	$(CC) $(CCFLAGS)  -c ../generic/generic.C
