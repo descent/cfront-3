@@ -45,6 +45,8 @@ table::table(short sz, Ptable nx, Pname n)
 	entries = new Pname[sz];
 	hashsize = sz = (sz*3)/2;
 	hashtbl = new short[sz];
+        for (int i=0 ; i < sz; ++i)
+          hashtbl[i] = 0;
 	next = nx;
 	free_slot = 1;
 	DBID();
