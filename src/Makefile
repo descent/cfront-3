@@ -1,5 +1,10 @@
-CXX	?=	g++
-CCFLAGS	=	-I../incl
+CC	?=	gcc
+CXX	?=	g++ 
+#SANITIZE_FLAGS = -fsanitize=undefined -fsanitize=address
+SANITIZE_FLAGS = 
+CCFLAGS	=	-m32 -I../incl $(SANITIZE_FLAGS)
+CFLAGS	=	-m32
+
 
 #MPMACRO = PATCH
 MPMACRO = MUNCH
@@ -20,12 +25,12 @@ COMDEP0	= 	szal.result Makefile \
 COMDEP	=	$(COMDEP0) yystype.h
 
 cfront:	$(OFILES)
-	$(CXX)	-o cfront $(OFILES)
+	$(CXX) $(CCFLAGS) $(SANITIZE_FLAGS) -o cfront $(OFILES)
 	-@ test -x ../cfront && mv ../cfront ../cfront.old
 	cp cfront ..
 
 szal.result: szal/szal.c
-	gcc -o szal/szal szal/szal.c
+	$(CC) $(CFLAGS) -o szal/szal szal/szal.c
 	./szal/szal > szal.result
 
 y.tab.C yystype.h: gram.y $(COMDEP0)
@@ -137,7 +142,7 @@ y.tab.o: y.tab.C $(COMDEP)
 	$(CXX) $(CCFLAGS) -c y.tab.C 
 
 _stdio.o: _stdio.c
-	cc -c _stdio.c
+	$(CC) $(CFLAGS) -c _stdio.c
 
 clean:
 	-@rm szal.result szal/szal
